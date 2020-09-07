@@ -1,0 +1,77 @@
+To install or reinstall, run 
+
+$make clean install 
+
+I put the patches I use in the PATCHES folder. Some patches don't have diff files and are just a matter of copying them to the main dwm folder and including them in the config.def.h file. The ones that are diff files need to be copied to the main dwm folder and then then run on with the patch cmd; e.g.
+
+$patch < dwm-fullgaps-6.2.diff
+
+Patches will likely fail if the file to be patched has already been heavily modified or previously patched. In that case, look at the output after using patch, and look at the 
+
+$vim.config.def.h.rej
+
+Just remove any lines from the file to be patched that have a '-' in front of them, and include any lines with a '+' in front of them.
+
+Note that patches are assumed to be running on unmodified dwm files. If a layout patch has already been run, then any additional ones will fail, just because additional layouts are added to the layouts array, and so the index given for that layout will collide with previously patched layouts. Make sure index called in Keys corresponds with correct layout in the Layouts array.
+
+My own changes are commented as 'Change' in config.def.h.
+These include changing the mod key to super, and changing the default terminal emulator.
+
+Open Apps:
+Dmenu: For now I just use dmenu from the Arch repo, but I could build it myself (just make sure to unintall the pacman version)
+
+
+Wallpaper: 
+Install nitrogen (#pacman -S nitrogen)
+Run Nitrogen (e.g. with dmenu) and click preferences, add a folder with wallpapers, click OK, Select one and click Apply.
+
+Remote Desktop:
+NoMachine: Edit /usr/NX/etc/node.cfg  and uncomment and set DefaultDesktopCommand to /usr/local/bin/dwm (or specifically to where the dwm executable was installed)
+Note: use a desktop manager such as LighDM, because doing so ensures that x11 is started before logging into the desktop environment. If it is not, NoMachine will assume/know that no session has been started on the host, and it will start its own. The problem with this is that NoMachine will not use the host graphics, and so most graphical apps (e.g. Blender, many file managers--browsers are an exception) will not even open. If NoMachine connects without indicating that it is starting its own session--set by the DefaulDesktopCommand above--then this indicates that you will have the full capabilities of the host machine as if you logged into it there.
+
+For most desktop managers, you will just need to create a .desktop file at /usr/share/xsessions . Use it to execute the dwm startup script instead of dwm itself.
+
+Without a desktop manager (not recommended if using NoMachine), you will use the startx command which will run ~/.xinitrc . The startup commands go at the bottom, and these commands should be the same as those of the startup scrit executed with the .desktop file.
+
+Keybindings:
+
+Terminal: Mod+Shift+Enter
+
+Dmenu: Mod+p
+Goto Tag: Mod+[1-9]
+Close window: Mod+Shift+c
+
+Default Layouts:
+Tiling: Mod+t
+Floating: Mod+f (Reposition: Mod+LeftClick; Resize: Mod+RightClick)
+Monocle: Mod+m
+
+Patches Functionality:
+
+Previous/next tag with Mod+b/Mod+n
+
+Modify gaps with various keys:
+Alt+Super+0 ― toggle gaps on and off
+Alt+Super+Shift+0 ― reset gaps back to default
+Alt+Super+h ― increase all gaps
+Alt+Super+l ― decrease all gaps
+Alt+Super+Shift+h ― increase outer gaps
+Alt+Super+Shift+l ― decrease outer gaps
+Alt+Super+Ctrl+h ― increase inner gaps
+Alt+Super+Ctrl+l ― decrease inner gaps
+Alt+y ― increase inner horizontal gaps
+Alt+o ― decrease inner horizontal gaps
+Alt+Ctrl+y ― increase inner vertical gaps
+Alt+Ctrl+o ― decrease outer vertical gaps
+Alt+Super+y ― increase outer horizontal gaps
+Alt+Super+o ― decrease outer horizontal gaps
+Alt+Shift+y ― increase outer vertical gaps
+Alt+Shift+o ― decrease outer vertical gaps
+NB: You may also want to disable resizehints to get even gaps.
+
+
+Layout Patches:
+Centered Master: Regular: Mod+u, Floating: Mod+o
+Fibunacci: Spiral: Mod+r Dwindle: Mod+Shift+r
+Grid: Mod+g
+
