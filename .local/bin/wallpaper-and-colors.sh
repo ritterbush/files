@@ -39,7 +39,7 @@ type dwm > /dev/null 2>&1 && [ -f "$HOME"/Programs/dwm/config.def.h ] &&
 
         ([ -f "$HOME"/Programs/dwm/config.h ] && rm -f "$HOME"/Programs/dwm/config.h  && echo 'Deleted old config.h, rebuilding dwm with new colorscheme' && cd "$HOME"/Programs/dwm/ && sudo make clean install) ||
 
-        ( echo 'Rebuilding dwm with new color scheme' cd "$HOME"/Programs/dwm/ && sudo make clean install)
+        ( echo 'Rebuilding dwm with new color scheme' && cd "$HOME"/Programs/dwm/ && sudo make clean install)
 
 
 
@@ -62,6 +62,6 @@ type dmenu > /dev/null 2>&1 && [ -f "$HOME"/Programs/dmenu/config.def.h ] &&
 
         ([ -f "$HOME"/Programs/dmenu/config.h ] && rm -f "$HOME"/Programs/dmenu/config.h  && echo 'Deleted old config.h, rebuilding dmenu with new colorscheme' && cd "$HOME"/Programs/dmenu/ && sudo make clean install) ||
 
-        ( echo 'Rebuilding dmenu with new color scheme' cd "$HOME"/Programs/dmenu/ && sudo make clean install)
+        ( echo 'Rebuilding dmenu with new color scheme' && cd "$HOME"/Programs/dmenu/ && sudo make clean install)
 
 
