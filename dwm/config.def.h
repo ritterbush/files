@@ -106,9 +106,14 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 */
 /*Use py-wal colorscheme*/
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", sel_bg, "-sf", sel_fg, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-c", "-l", "20", "-m", dmenumon, "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", sel_bg, "-sf", sel_fg, NULL };
 /* Change default terminal emulator to Alacritty */
 static const char *termcmd[]  = { "alacritty", NULL };
+
+/* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
+static char *statuscmds[] = { "~/.local/bin/dwm-scripts/cpu.sh", "~/.local/bin/dwm-scripts/weather.sh", "~/.local/bin/dwm-scripts/pacman-updates.sh" };
+/*static char statuscmds[] = { notify-send Mouse$BUTTON, cpu }; */
+static char *statuscmd[] = { "/bin/zsh", "-c", NULL, NULL };
 
 
 /* Change include shiftview.c and give 2 Keys for prev/next tag functionality */
@@ -180,7 +185,9 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+	{ ClkStatusText,        0,              Button1,        spawn,          {.v = statuscmd } },
+	{ ClkStatusText,        0,              Button2,        spawn,          {.v = statuscmd } },
+	{ ClkStatusText,        0,              Button3,        spawn,          {.v = statuscmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },

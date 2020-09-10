@@ -12,7 +12,6 @@ SAVEHIST=10000
 HISTFILE=~/.histfile
 
 # Aliases
-
 opacity() {
     ~/.local/bin/alacritty-opacity.sh "$1" 
     ~/.local/bin/dwm-opacity.sh "$1"
@@ -20,16 +19,26 @@ opacity() {
 
 alias l='ls -A'
 alias ll='ls -Al'
+alias cdsh='cd ~/.local/bin'
+alias cdwmsh='cd ~/.local/bin/dwm-scripts'
+alias cdcon='cd ~/.config'
+alias cdal='cd ~/.config/alacritty'
 alias res='xrandr -s 1920x1080 -r 144.00'
 alias resmac='xrandr -s 1680x1050 -r 60.00'
 alias rescrt='xrandr -s 1024x768 -r 85.00'
 alias op='opacity'
-alias opalac='~/.local/bin/alacritty-opacity.sh'
+alias opal='~/.local/bin/alacritty-opacity.sh'
 alias opdwm='~/.local/bin/alacritty-opacity.sh'
 alias wp='~/.local/bin/wallpaper-and-colors.sh'
 alias used='du -sh'
 alias free='df -Th'
 alias img='~/.local/bin/images.sh'
+
+# dwm script aliases
+alias hdd-dwm-script='~/.local/bin/dwm-scripts/diskspace.sh'
+alias volume='~/.local/bin/dwm-scripts/volume.sh'
+alias cpu='~/.local/bin/dwm-scripts/cpu.sh'
+alias battery='~/.local/bin/dwm-scripts/battery.sh'
 
 # Load aliases and shortcuts if existent.
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc"
@@ -97,6 +106,7 @@ bindkey '^[[P' delete-char
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
+
 # Import colorscheme from 'wal' asynchronously
 # &   # Run the process in the background.
 # ( ) # Hide shell job control messages.
@@ -104,7 +114,6 @@ bindkey '^e' edit-command-line
 
 # To add support for TTYs this line can be optionally added.
 source ~/.cache/wal/colors-tty.sh 2>/dev/null
-
 
 
 # Load syntax highlighting; should be last.
