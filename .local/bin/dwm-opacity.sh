@@ -23,9 +23,9 @@ fi &&
 #sed "s/static const unsigned int baralpha = .*/static const unsigned int baralpha = 0x${1};/" "$HOME"/Programs/dwm/config.def.h
 
 #Rebuild dwm with opacity changes
-    ([ -f "$HOME"/Programs/dwm/config.h ] && rm -f "$HOME"/Programs/dwm/config.h  && echo 'Deleted old config.h, rebuilding dwm with new colorscheme' && cd "$HOME"/Programs/dwm/ && sudo make clean install) ||
+    ([ -f "$HOME"/Programs/dwm/config.h ] && rm -f "$HOME"/Programs/dwm/config.h  && echo 'Deleted old config.h, rebuilding dwm with new opacity' && cd "$HOME"/Programs/dwm/ && sudo make clean install) ||
 
-    ( echo 'Rebuilding dwm with new color scheme' && cd "$HOME"/Programs/dwm/ && sudo make clean install)
+    ( echo 'Rebuilding dwm with new opacity' && cd "$HOME"/Programs/dwm/ && sudo make clean install)
 
 
 
