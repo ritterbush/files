@@ -10,8 +10,10 @@ static const unsigned int gappov    = 10;       /* vert outer gap between window
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+/* static const char *fonts[]          = { "monospace:size=10" };*/
+static const char *fonts[]          = { "Linux Libertine:style=Bold Italic:size=10:antialias=true:autohint=true" };
+/* static const char dmenufont[]       = "monospace:size=10";*/
+static const char dmenufont[]       = "Linux Libertine:style=Bold Italic:size=10:antialias=true:autohint=true";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -23,13 +25,13 @@ static const unsigned int borderalpha = OPAQUE;
 
 /* py-wal colorscheme */
 
-static const char norm_fg[] = "#dcd8cf";
-static const char norm_bg[] = "#150f0c";
-static const char norm_border[] = "#9a9790";
+static const char norm_fg[] = "#cfd6d6";
+static const char norm_bg[] = "#150c04";
+static const char norm_border[] = "#909595";
 
-static const char sel_fg[] = "#dcd8cf";
-static const char sel_bg[] = "#B85A2C";
-static const char sel_border[] = "#dcd8cf";
+static const char sel_fg[] = "#cfd6d6";
+static const char sel_bg[] = "#BDA05A";
+static const char sel_border[] = "#cfd6d6";
 
 static const char urg_fg[] = "#efe2c9";
 static const char urg_bg[] = "#C15130";

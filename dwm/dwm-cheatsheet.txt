@@ -2,6 +2,8 @@ To install or reinstall, run
 
 $make clean install 
 
+This will create a config.h file as well. If changes are made to config.def.h, delete config.h so a new one will be created based on those changes.
+
 I put the patches I use in the PATCHES folder. Some patches don't have diff files and are just a matter of copying them to the main dwm folder and including them in the config.def.h file. The ones that are diff files need to be copied to the main dwm folder and then then run on with the patch cmd; e.g.
 
 $patch < dwm-fullgaps-6.2.diff
@@ -22,7 +24,10 @@ Dmenu: For now I just use dmenu from the Arch repo, but I could build it myself 
 
 
 Wallpaper: 
-Install nitrogen (#pacman -S nitrogen)
+Set with 
+$xwallpaper --zoom /path/to/wallpaper
+Add that line to the startx configs used, with an '&' at the end.
+OR (startx configs will need to be updated accordingly): Install nitrogen (#pacman -S nitrogen)
 Run Nitrogen (e.g. with dmenu) and click preferences, add a folder with wallpapers, click OK, Select one and click Apply.
 
 Remote Desktop:
@@ -32,6 +37,12 @@ Note: use a desktop manager such as LighDM, because doing so ensures that x11 is
 For most desktop managers, you will just need to create a .desktop file at /usr/share/xsessions . Use it to execute the dwm startup script instead of dwm itself.
 
 Without a desktop manager (not recommended if using NoMachine), you will use the startx command which will run ~/.xinitrc . The startup commands go at the bottom, and these commands should be the same as those of the startup scrit executed with the .desktop file.
+
+Fonts:
+To use custom fonts, install them as normal (pacman or AUR) and then paste its name into config.def.h
+To get the name, use
+$fc-list | grep fontname
+The name to use will be on the right. 
 
 Keybindings:
 
