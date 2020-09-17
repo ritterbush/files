@@ -40,9 +40,9 @@ sed -i "s/^static const char dmenufont\[\]       = \".*/static const char dmenuf
 
 
 #Rebuild dwm with font changes
-    ([ -f "$HOME"/Programs/dwm/config.h ] && rm -f "$HOME"/Programs/dwm/config.h  && echo 'Deleted old config.h, rebuilding dwm with new fonts' && cd "$HOME"/Programs/dwm/ && sudo make clean install) ||
+    ([ -f ~/Programs/dwm/config.h ] && rm -f ~/Programs/dwm/config.h  && echo 'Deleted old config.h, rebuilding dwm with new fonts' && cd ~/Programs/dwm/ && sudo make clean install) ||
 
-    ( echo 'Rebuilding dwm with new fonts' && cd "$HOME"/Programs/dwm/ && sudo make clean install)
+    ( echo 'Rebuilding dwm with new fonts' && cd ~/Programs/dwm/ && sudo make clean install)
 
 
 

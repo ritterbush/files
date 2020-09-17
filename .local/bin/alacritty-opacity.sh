@@ -1,7 +1,7 @@
 #! /bin/sh
 
 
-alacrittyrc_path=$HOME/.config/alacritty/alacritty.yml 
+alacrittyrc_path=~/.config/alacritty/alacritty.yml 
 
 #sed -i "s/background_opacity.*/background_opacity: 0.$1/" $alacrittyrc_path
 #Check arg's an integer

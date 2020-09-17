@@ -54,13 +54,13 @@ fi
 #xterm -geometry 80x20+494-0 &
 #exec xterm -geometry 80x66+0+0 -name login
 
-wallpaperFilepath=$(sed -n 5p ~/.local/bin/wallpaper-and-colors.sh | sed 's/filepath=//')
+#wallpaperFilepath=$(sed -n 5p ~/.local/bin/wallpaper-and-colors.sh | sed 's/filepath=//')
 
 # Start compositor
 picom &
 
 # Restore wallpaper: uncomment whichever pkg used
-nitrogen --restore &
+#nitrogen --restore &
 #xwallpaper --zoom "$wallpaperFilepath" &
 
 # Restore colorscheme
@@ -69,4 +69,4 @@ wal -R &
 # Run dwm status bar
 ~/.local/bin/dwm-scripts/update-setxroot.sh &
 
-exec ~/.local/bin/dwm-scripts/start-dwm.sh
+sleep 1 && exec ~/.local/bin/dwm-scripts/start-dwm.sh
