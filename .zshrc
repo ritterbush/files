@@ -12,13 +12,39 @@ SAVEHIST=10000
 HISTFILE=~/.histfile
 
 # Aliases
+
+ex() {
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *.deb)       ar x $1      ;;
+      *.tar.xz)    tar xf $1    ;;
+      *.tar.zst)   unzstd $1    ;;      
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
 opacity() {
     ~/.local/bin/alacritty-opacity.sh "$1" 
-    ~/.local/bin/dwm-opacity.sh "$1"
+    ~/.local/bin/dwm-scripts/dwm-opacity.sh "$1"
 }
 
 alias l='ls -A'
 alias ll='ls -Al'
+alias vim="nvim"
 alias cdsh='cd ~/.local/bin'
 alias cdwmsh='cd ~/.local/bin/dwm-scripts'
 alias cdcon='cd ~/.config'
@@ -34,6 +60,35 @@ alias wp='~/.local/bin/wallpaper-and-colors.sh'
 alias used='du -sh'
 alias free='df -Th'
 alias img='~/.local/bin/images.sh'
+alias screenshot='~/.local/bin/screenshot.sh'
+alias music='ncmpcpp'
+
+#ls replacements with exa
+alias ls='exa -al --color=always --group-directories-first' # my preferred listing
+alias la='exa -a --color=always --group-directories-first'  # all files and dirs
+alias ll='exa -l --color=always --group-directories-first'  # long format
+alias lt='exa -aT --color=always --group-directories-first' # tree listing
+alias l.='exa -a | egrep "^\."'
+
+# Colorize grep output
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# shutdown or reboot
+alias sp="sudo poweroff"
+alias sr="sudo reboot"
+
+# youtube-dl
+alias yta-aac="youtube-dl --extract-audio --audio-format aac "
+alias yta-best="youtube-dl --extract-audio --audio-format best "
+alias yta-flac="youtube-dl --extract-audio --audio-format flac "
+alias yta-m4a="youtube-dl --extract-audio --audio-format m4a "
+alias yta-mp3="youtube-dl --extract-audio --audio-format mp3 "
+alias yta-opus="youtube-dl --extract-audio --audio-format opus "
+alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
+alias yta-wav="youtube-dl --extract-audio --audio-format wav "
+alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 
 # dwm script aliases
 alias hdd-dwm-script='~/.local/bin/dwm-scripts/diskspace.sh'

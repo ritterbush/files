@@ -56,6 +56,9 @@ fi
 
 #wallpaperFilepath=$(sed -n 5p ~/.local/bin/wallpaper-and-colors.sh | sed 's/filepath=//')
 
+# Start music client
+mpd ~/.config/mpd/mpd.config &
+
 # Start compositor
 picom &
 
