@@ -17,7 +17,7 @@ set relativenumber      " show relative line numbers; using with number sets a h
 set ignorecase          " caseinsenitive searches; hotkeys \C to set \c to disable
 set smartcase           " requires ignorecase, case sensitive if searchterm has uppercase letter
 set showcmd             " show command in bottom bar
-set cursorline          " highlight current line
+"set cursorline          " highlight current line
 set wildmenu            " visual autocomplete for command menu
 set lazyredraw          " redraw only when we need to.
 set incsearch           " search as characters are entered
