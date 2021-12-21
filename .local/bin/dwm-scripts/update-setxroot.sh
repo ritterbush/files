@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 #echo "$(df -h | awk 'NR==4{ print $4, "free", $5, "used" }')"
 #hdd=$(df -h | awk 'NR==4{ print $4, "free", $5, "used" }')
 #printf " %s " "$hdd"
