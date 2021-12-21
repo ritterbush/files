@@ -12,8 +12,13 @@ alacrittyrc_path=~/.config/alacritty/alacritty.yml
 #fi
 
 
+#Check that argument is a number
+if     [ -z "${1##*[!0-9]*}" ]
+  then   
+	echo "Numbers 0-100 only."
+	exit 0
+fi
 
-[[ $1 =~ ^-?[0-9]+$ ]] && 
 
 #[ ${#1} -eq 1 ] && echo YES ; sed -i "s/background_opacity.*/background_opacity: 0.0$1/" $alacrittyrc_path
 

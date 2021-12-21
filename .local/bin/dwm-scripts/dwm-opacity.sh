@@ -5,7 +5,11 @@
 #I might do it anyway
 
 #Check that argument is a number
-[[ $1 =~ ^-?[0-9]+$ ]] &&
+if     [ -z "${1##*[!0-9]*}" ]
+  then
+        echo "Numbers 0-100 only."
+        exit 0
+fi
 
 percent_of_255="$(($1 * 255 / 100))" &&
 #echo "$percent_of_255" &&
