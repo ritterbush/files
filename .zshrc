@@ -42,8 +42,8 @@ opacity() {
     ~/.local/bin/dwm-scripts/dwm-opacity.sh "$1"
 }
 
-alias l='ls -A'
-alias ll='ls -Al'
+#alias l='ls -A'
+#alias ll='ls -Al'
 alias vim="nvim"
 alias cdsh='cd ~/.local/bin'
 alias cdwmsh='cd ~/.local/bin/dwm-scripts'
@@ -54,7 +54,7 @@ alias resmac='xrandr -s 1680x1050 -r 60.00'
 alias rescrt='xrandr -s 1024x768 -r 85.00'
 alias op='opacity'
 alias opal='~/.local/bin/alacritty-opacity.sh'
-alias opdwm='~/.local/bin/alacritty-opacity.sh'
+alias opdwm='~/.local/bin/dwm-scripts/dwm-opacity.sh'
 alias dwmfonts='~/.local/bin/dwm-scripts/dwm-fonts.sh'
 alias wp='~/.local/bin/wallpaper-and-colors.sh'
 alias used='du -sh'

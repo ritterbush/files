@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=dwm
 Comment=Dynamic window manager
-Exec=~/.local/bin/dwm-scripts/dwm.sh
+Exec=/home/FFFFF/.local/bin/dwm-scripts/dwm.sh
 Icon=dwm
 Type=XSession
 
