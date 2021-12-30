@@ -1,51 +1,73 @@
---config
-
 -- Default mapleader key is '\'
---let mapleader = ","
 vim.g.mapleader = ','
 
---:help nvim-defaults
---nocompatible is set by default
---set nocompatible        " Set compatibility to Vim only. Recommended or else it might make Vim or plugins behave unexpectedly. Description of 'compatible' from manual: This option has the effect of making Vim either more Vi-compatible, or make Vim behave in a more useful way.
---syntax highlighting is enabled by default
---syntax enable           " enable syntax processing
+-- Have Vim jump to the last position when
+-- reopening a file
+-- see :help last-position-jump
+vim.cmd([[autocmd BufRead * autocmd FileType <buffer> ++once
+\ if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif]])
+
+-- See :help nvim-defaults
+-- Many of these are already defaults but defaults may always change
+vim.g.compatible = false
+vim.opt.backspace = "indent,eol,start"
+-- This also works:
+--vim.opt.backspace = { "indent", "eol", "start" }
+vim.opt.syntax = "enable" -- enable (vs on) should keep current color setting
+
+vim.opt.clipboard = "unnamedplus"               -- allows neovim to access the system clipboard
+vim.opt.cmdheight = 2                           -- more space in the neovim command line for displaying messages
+vim.opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp               
+vim.opt.conceallevel = 0                        -- so that `` is visible in markdown files
+vim.opt.fileencoding = "utf-8"                  -- the encoding written to a file       
+vim.opt.pumheight = 10                          -- pop up menu height                
+vim.opt.showmode = false                        -- we don't need to see things like -- INSERT -- anymore
+vim.opt.splitbelow = true                       -- force all horizontal splits to go below current window
+vim.opt.splitright = true                       -- force all vertical splits to go to the right of current window
+vim.opt.termguicolors = true                    -- set term gui colors (most terminals support this)
+vim.opt.timeoutlen = 400                        -- time to wait for a mapped sequence to complete (in milliseconds)
+vim.opt.undofile = true                         -- enable persistent undo            
+vim.opt.updatetime = 300                        -- faster completion (4000ms default)
+vim.opt.writebackup = false                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
+vim.opt.cursorline = true                       -- highlight the current line        
+vim.opt.signcolumn = "yes"                      -- always show the sign column, otherwise it would shift the text each time
+vim.opt.wrap = false                            -- display lines as one long line       
+vim.opt.scrolloff = 8                           -- is one of my fav                  
+vim.opt.sidescrolloff = 8                                                            
+vim.opt.guifont = "monospace:h17"               -- the font used in graphical neovim applications
+vim.opt.backup = false                          -- creates a backup file             
+vim.opt.swapfile = false                        -- creates a swapfile                
 
 vim.opt.tabstop = 4       -- number of visual spaces per TAB
---set softtabstop=4   " number of spaces in tab when editing
 vim.opt.softtabstop = 4   -- number of spaces in tab when editing
---set shiftwidth=4   " number of indents after a brackettab for compatible langauge file
 vim.opt.shiftwidth = 4    -- number of spaces to use for autoindent
---set expandtab       " tabs are spaces
 vim.opt.expandtab = true  -- tabs are spaces
---autoindent is set by default
---vim.opt.autoindent = true
-vim.opt.copyindent = true -- copy indent from the previous line
---set number              " show absolute line numbers; using with retivenumber sets a hybrid mode; toggle with nu!
-vim.opt.number = true
---set relativenumber      " show relative line numbers; using with number sets a hybrid mode; toggle with rnu!
---vim.opt.relativenumber = true
---set ignorecase          " caseinsenitive searches; hotkeys \C to set \c to disable
-vim.opt.ignorecase = true
---set smartcase           " requires ignorecase, case sensitive if searchterm has uppercase letter
-vim.opt.smartcase = true
---set showcmd             " show command in bottom bar
---enabled by default: vim.opt.showcmd = true
---set wildmenu            " visual autocomplete for command menu
---enabled by default: vim.opt.wildmenu = true
---"set cursorline          " highlight current line
---set lazyredraw          " redraw only when we need to.
---incsearch enabled by default
---set incsearch           " search as characters are entered
---hlsearch enabled by default
---set hlsearch            " highlight matches
---vim.opt.hlsearch = true
+vim.opt.autoindent = true -- indent carries on to the next line
+vim.opt.copyindent = true -- copies the tab/space chars indent from the previous line
+vim.opt.showtabline = 4                         -- always show tabs                  
+vim.opt.smartindent = true                      -- make indenting smarter again         
 
---"C+X C+O to use intelliJ-style autocompletion. Use C+N and C+P to navigate the list menu.
---set omnifunc=syntaxcomplete#Complete
-
+vim.opt.number = true --show absolute line numbers; using with retivenumber sets a hybrid mode; toggle with nu!
+--vim.opt.relativenumber = true -- show relative line numbers; using with number sets a hybrid mode; toggle with rnu!
+vim.opt.ruler = true -- show the cursor position
+vim.opt.incsearch = true -- search as characters are entered
+vim.opt.hlsearch = true -- highlight matches
+vim.opt.ignorecase = true -- caseinsenitive searches; hotkeys \C to set \c to disable
+vim.opt.smartcase = true -- requires ignorecase, case sensitive if searchterm has uppercase letter
+vim.opt.showcmd = true -- show command in bottom bar
+vim.opt.showmatch = true -- Show matching brackets
 vim.opt.list = true -- See whitespace chars
-vim.opt.scrolloff = 4 -- Scroll page when this amount of lines is left
---Default vim.opt.wrap = true --Line wrap
+--vim.opt.autowrite = true -- Automatically save before commands like :next and :make
+--vim.opt.hidden = true -- Hide buffers when they are abandoned
+vim.opt.mouse = "a"     -- Enable mouse usage (all modes)
+
+vim.opt.history = 10000     -- keep the max of 10000 lines of command line history
+vim.opt.wildmenu = true -- visual autocomplete for command menu
+vim.opt.lazyredraw = true -- redraw only when we need to
+
+-- Color column settings
+vim.opt.colorcolumn = {"80"}
+vim.cmd([[highlight! link SignColumn colorcolumn]])
 
 --https://stackoverflow.com/questions/68685327/how-can-i-override-configurations-from-the-built-in-ftplugins
 --https://www.notonlycode.org/neovim-lua-config/
@@ -123,9 +145,5 @@ to get it working.
 --vim.go.formatoptions:remove { "r", "o" }
 --autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 
-
 ]]--
-
-
-
 
