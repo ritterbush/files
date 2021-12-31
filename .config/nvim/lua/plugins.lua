@@ -59,97 +59,55 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   use 'dracula/vim'
-  use {
-      'nvim-treesitter/nvim-treesitter',
-      require'nvim-treesitter.configs'.setup {
-      ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-      sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-      --ignore_install = { "javascript" }, -- List of parsers to ignore installing
-      highlight = {
-      enable = true,              -- false will disable the whole extension
-      --disable = { "c", "rust" },  -- list of language that will be disabled
-      -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-      -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-      -- Using this option may slow down your editor, and you may see some duplicate highlights.
-      -- Instead of true it can also be a list of languages
-      additional_vim_regex_highlighting = false,
-      },
-      indent = {
-      enable = true
-      },
-      -- Folding with zo (open) and zc (close)
-      vim.cmd([[
-      set foldmethod=expr
-      set foldexpr=nvim_treesitter#foldexpr()
-      ]]),
-      }
-  }
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
+    }
+
+  -- lsp
   use {'neovim/nvim-lspconfig',
       'williamboman/nvim-lsp-installer',
   }
+  --[[
+    -- nvim-cmp
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-cmdline'
+    --use 'hrsh7th/nvim-cmp'
 
-    local lsp_installer = require("nvim-lsp-installer")
+    -- Use one of the snippets (config will need to get updated)
 
-    -- Register a handler that will be called for all installed servers.
-    -- Alternatively, you may also register handlers on specific server instances instead (see example below).
-    lsp_installer.on_server_ready(function(server)
-        local opts = {}
+    -- lua snippets
+    --use 'L3MON4D3/LuaSnip'
+    --use 'saadparwaiz1/cmp_luasnip'
 
-        -- (optional) Customize the options passed to the server
-        -- if server.name == "tsserver" then
-        --     opts.root_dir = function() ... end
-        -- end
+    --https://github.com/saadparwaiz1/cmp_luasnip
+    -- Installation
+    use { 'L3MON4D3/LuaSnip' } 
+    use { 
+      'hrsh7th/nvim-cmp',
+      config = function ()
+        require'cmp'.setup {
+        snippet = {
+          expand = function(args)
+            require'luasnip'.lsp_expand(args.body)
+          end
+        },
+        sources = {
+          { name = 'luasnip' },
+          -- more sources
+        },
+      }
+      end
+    }
+    use { 'saadparwaiz1/cmp_luasnip' }
 
-        if server.name == "sumneko_lua" then
-        opts = {
-          settings = {
-            Lua = {
-              diagnostics = {
-                globals = { 'vim', 'use' }
-              },
-              --workspace = {
-                -- Make the server aware of Neovim runtime files
-                --library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true}
-              --}
-            }
-          }
-        }
-        end
 
-
-        -- This setup() function is exactly the same as lspconfig's setup function.
-        -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-        server:setup(opts)
-    end)
-
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-    -- Enable completion triggered by <c-x><c-o>
-    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    -- Mappings.
-    local opts = { noremap=true, silent=true }
-
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-    buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-    buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
+    -- vsnip
+    --use 'hrsh7th/cmp-vsnip'
+    --use 'hrsh7th/vim-vsnip'
+    ]]--
 
   -- Simple plugins can be specified as strings
   --use '9mm/vim-closer'

@@ -1,6 +1,6 @@
 local set = vim.opt
 
-vim.cmd [[colorscheme dracula]]
+--vim.cmd [[colorscheme dracula]]
 
 -- Default mapleader key is '\'
 vim.g.mapleader = ','
@@ -21,26 +21,26 @@ set.syntax = "enable" -- enable (vs on) should keep current color setting
 
 set.clipboard = "unnamedplus"               -- allows neovim to access the system clipboard
 set.cmdheight = 2                           -- more space in the neovim command line for displaying messages
-set.completeopt = { "menuone", "noselect" } -- mostly just for cmp               
+set.completeopt = { "menu", "menuone", "noselect" } -- mostly just for cmp
 set.conceallevel = 0                        -- so that `` is visible in markdown files
-set.fileencoding = "utf-8"                  -- the encoding written to a file       
-set.pumheight = 10                          -- pop up menu height                
+set.fileencoding = "utf-8"                  -- the encoding written to a file
+set.pumheight = 10                          -- pop up menu height
 set.showmode = false                        -- we don't need to see things like -- INSERT -- anymore
 set.splitbelow = true                       -- force all horizontal splits to go below current window
 set.splitright = true                       -- force all vertical splits to go to the right of current window
 set.termguicolors = true                    -- set term gui colors (most terminals support this)
 set.timeoutlen = 400                        -- time to wait for a mapped sequence to complete (in milliseconds)
-set.undofile = true                         -- enable persistent undo            
+set.undofile = true                         -- enable persistent undo
 set.updatetime = 300                        -- faster completion (4000ms default)
 set.writebackup = false                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-set.cursorline = true                       -- highlight the current line        
+set.cursorline = true                       -- highlight the current line
 set.signcolumn = "yes"                      -- always show the sign column, otherwise it would shift the text each time
-set.wrap = false                            -- display lines as one long line       
-set.scrolloff = 8                           -- is one of my fav                  
-set.sidescrolloff = 8                                                            
+set.wrap = false                            -- display lines as one long line
+set.scrolloff = 8                           -- is one of my fav
+set.sidescrolloff = 8
 set.guifont = "monospace:h17"               -- the font used in graphical neovim applications
-set.backup = false                          -- creates a backup file             
-set.swapfile = false                        -- creates a swapfile                
+set.backup = false                          -- creates a backup file
+set.swapfile = false                        -- creates a swapfile
 
 set.tabstop = 4       -- number of visual spaces per TAB
 set.softtabstop = 4   -- number of spaces in tab when editing
@@ -48,8 +48,8 @@ set.shiftwidth = 4    -- number of spaces to use for autoindent
 set.expandtab = true  -- tabs are spaces
 set.autoindent = true -- indent carries on to the next line
 set.copyindent = true -- copies the tab/space chars indent from the previous line
-set.showtabline = 4                         -- always show tabs                  
-set.smartindent = true                      -- make indenting smarter again         
+set.showtabline = 4                         -- always show tabs
+set.smartindent = true                      -- make indenting smarter again
 
 set.number = true --show absolute line numbers; using with retivenumber sets a hybrid mode; toggle with nu!
 --set.relativenumber = true -- show relative line numbers; using with number sets a hybrid mode; toggle with rnu!
@@ -88,8 +88,8 @@ autocmd BufNewFile,BufRead * setlocal formatoptions-=ro
 --[[
 Lots of issues trying to get a Lua version of the above working.
 
-The main issue is that the ftplugin (Filetype plugin) configs 
-of /usr/share/nvim/runtime/ftplugin/lua.vim (use 
+The main issue is that the ftplugin (Filetype plugin) configs
+of /usr/share/nvim/runtime/ftplugin/lua.vim (use
 :verbose set formatoptions , with the above command commented out,
 to see the path to the last place a config was sourced from--when
 using an Appimage the path will be from the /tmp/ folder)
