@@ -68,46 +68,19 @@ return require('packer').startup(function(use)
   use {'neovim/nvim-lspconfig',
       'williamboman/nvim-lsp-installer',
   }
-  --[[
     -- nvim-cmp
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-cmdline'
-    --use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/nvim-cmp'
 
-    -- Use one of the snippets (config will need to get updated)
-
-    -- lua snippets
-    --use 'L3MON4D3/LuaSnip'
-    --use 'saadparwaiz1/cmp_luasnip'
-
-    --https://github.com/saadparwaiz1/cmp_luasnip
-    -- Installation
-    use { 'L3MON4D3/LuaSnip' } 
-    use { 
-      'hrsh7th/nvim-cmp',
-      config = function ()
-        require'cmp'.setup {
-        snippet = {
-          expand = function(args)
-            require'luasnip'.lsp_expand(args.body)
-          end
-        },
-        sources = {
-          { name = 'luasnip' },
-          -- more sources
-        },
-      }
-      end
-    }
-    use { 'saadparwaiz1/cmp_luasnip' }
-
+    -- Use a snippet (config will need to get updated)
 
     -- vsnip
-    --use 'hrsh7th/cmp-vsnip'
-    --use 'hrsh7th/vim-vsnip'
-    ]]--
+    use 'hrsh7th/cmp-vsnip'
+    use 'hrsh7th/vim-vsnip'
+
 
   -- Simple plugins can be specified as strings
   --use '9mm/vim-closer'
