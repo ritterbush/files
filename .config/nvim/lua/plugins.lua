@@ -58,7 +58,7 @@ end)
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
-
+  use 'dracula/vim'
 
   -- Simple plugins can be specified as strings
   --use '9mm/vim-closer'
