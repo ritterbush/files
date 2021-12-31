@@ -90,11 +90,14 @@ inoremap kj <esc>
 " Turn off highlighted chars after a search
 nnoremap <leader><space> :nohlsearch<CR>
 
-""Color column ending using the left column color
+" Color column ending using the left column color
 set colorcolumn=80
-highlight! link SignColumn colorcolumn
-""Toggle colorcolumn
+"highlight! link SignColumn colorcolumn
+" Toggle colorcolumn
 nnoremap <leader>c :execute "set colorcolumn=" . (&colorcolumn == "" ? "80" : "")<CR>
+" Off to start
+execute "set colorcolumn=" . (&colorcolumn == "" ? "80" : "")
+
 
 "Remappings to make vim behave like an IDE
 
