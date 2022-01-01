@@ -82,6 +82,18 @@ return require('packer').startup(function(use)
     use 'hrsh7th/vim-vsnip'
 
 
+    -- telescope
+   
+    -- telescope sorter
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    
+    -- telescope
+    use {
+      'nvim-telescope/telescope.nvim',
+      requires = { {'nvim-lua/plenary.nvim'} }
+    }
+
+
   -- Simple plugins can be specified as strings
   --use '9mm/vim-closer'
 
