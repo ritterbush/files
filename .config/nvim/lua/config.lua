@@ -1,6 +1,6 @@
 local set = vim.opt
 
-vim.cmd [[colorscheme dracula]]
+--vim.cmd [[colorscheme dracula]]
 
 -- Default mapleader key is '\'
 vim.g.mapleader = ','
