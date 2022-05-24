@@ -90,6 +90,25 @@ local servers = { 'hls', 'pyright', 'rust_analyzer', 'tsserver' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     on_attach = on_attach,
+
+    -- Show line diagnostics automatically in hover window
+    -- from nvim-lspconfig/wiki/UI-cusomization github page
+    vim.api.nvim_create_autocmd("CursorHold", {
+      buffer = bufnr,
+      callback = function()
+        local opts = {
+          focusable = false,
+          close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+          border = 'rounded',
+          source = 'always',
+          prefix = ' ',
+          scope = 'cursor',
+        }
+        vim.diagnostic.open_float(nil, opts)
+      end
+    }),
+    -- end of Show line diagnostics code
+
     flags = {
       -- This will be the default in neovim 0.7+
       debounce_text_changes = 150,
