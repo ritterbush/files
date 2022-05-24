@@ -3,6 +3,7 @@
 -- uses https://github.com/nvim-telescope/telescope-fzf-native.nvim
 -- install fd and ripgrep from package manager
 
+
 require('telescope').setup {
   defaults = {
     -- Default configuration for telescope goes here:
@@ -43,6 +44,7 @@ require('telescope').setup {
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
+
 
 --[[
 -- Use treesitter --needed?

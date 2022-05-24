@@ -1,5 +1,7 @@
-function keymap(mode, shortcut, command)    
-    vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })    
+-- mapleader is changed in config.lua, in order to be loaded near the start
+
+local function keymap(mode, shortcut, command)
+    vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
 
 --" kj is escape; homerow alternative
@@ -22,4 +24,4 @@ vim.cmd([[nnoremap <leader>c :execute "set colorcolumn=" . (&colorcolumn == "" ?
 --"HTML
 --autocmd FileType html inoremap ;em <em></em><Space><++><Esc>2F>a
 --autocmd FileType html inoremap ;b <b></b><Space><++><Esc>2F>a
---autocmd FileType html inoremap ;p <p></p><Enter><Enter><++><Esc>2k$F<i 
+--autocmd FileType html inoremap ;p <p></p><Enter><Enter><++><Esc>2k$F<i

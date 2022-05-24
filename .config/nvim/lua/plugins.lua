@@ -59,15 +59,36 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   use 'dracula/vim'
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
-    }
+
+  use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate'
+   }
 
   -- lsp
-  use {'neovim/nvim-lspconfig',
-      'williamboman/nvim-lsp-installer',
+  use {
+    'williamboman/nvim-lsp-installer',
+    'neovim/nvim-lspconfig',
   }
+
+
+--[[ -- The below is another default lsp-installer (with lspconfig) config possibility, but lspconfig is already setup in lsp.lua
+  -- lsp
+  use {
+    'williamboman/nvim-lsp-installer',
+    {
+        'neovim/nvim-lspconfig',
+        config = function()
+            require("nvim-lsp-installer").setup {}
+            local lspconfig = require("lspconfig")
+            lspconfig.sumneko_lua.setup {}
+            --lspconfig.pyright.setup {}
+        end
+    }
+  }
+
+--]]
+
     -- nvim-cmp
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-buffer'
@@ -81,7 +102,6 @@ return require('packer').startup(function(use)
     use 'hrsh7th/cmp-vsnip'
     use 'hrsh7th/vim-vsnip'
 
-
     -- telescope
    
     -- telescope sorter
@@ -92,6 +112,13 @@ return require('packer').startup(function(use)
       'nvim-telescope/telescope.nvim',
       requires = { {'nvim-lua/plenary.nvim'} }
     }
+
+
+--[[
+    -- dap debugger tool
+    use 'mfussenegger/nvim-dap'
+    ]]--
+
 
 
   -- Simple plugins can be specified as strings

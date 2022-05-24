@@ -89,7 +89,11 @@ sources = cmp.config.sources({
 })
 })
 
---[[ -- Throws a LSP not found type error; yet it still works 12-31-21
+--[[
+
+-- Obviously unneeded since lspconfig is already setup in the lsp.lua file!
+
+-- Throws a LSP not found type error; yet it still works 12-31-21
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.

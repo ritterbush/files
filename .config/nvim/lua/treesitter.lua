@@ -3,8 +3,8 @@
 -- Includes the indent and folding options
 
 require'nvim-treesitter.configs'.setup {
-  -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = "maintained",
+  -- A list of parser names, or "all"
+  ensure_installed = "all",
 
   -- Install languages synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -25,9 +25,11 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
-indent = {
-enable = true
-},
+
+  indent = {
+    enable = true
+  },
+
 -- Folding: zo (open) and zc (close)
 --vim.cmd([[
 --set foldmethod=expr

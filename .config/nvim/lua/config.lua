@@ -1,6 +1,6 @@
 local set = vim.opt
 
---vim.cmd [[colorscheme dracula]]
+vim.cmd [[colorscheme dracula]]
 
 -- Default mapleader key is '\'
 vim.g.mapleader = ','
@@ -35,7 +35,8 @@ set.updatetime = 300                        -- faster completion (4000ms default
 set.writebackup = false                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 set.cursorline = true                       -- highlight the current line
 set.signcolumn = "yes"                      -- always show the sign column, otherwise it would shift the text each time
-set.wrap = false                            -- display lines as one long line
+set.wrap = true                            -- don't display lines as one long line
+set.linebreak = true                            -- with above true; wrap lines by words
 set.scrolloff = 8                           -- is one of my fav
 set.sidescrolloff = 8
 set.guifont = "monospace:h17"               -- the font used in graphical neovim applications
