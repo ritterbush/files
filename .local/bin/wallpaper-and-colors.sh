@@ -38,9 +38,9 @@ command -v wal > /dev/null 2>&1 || { echo "Install pywal to use this command."; 
     sed -i "s/static const char sel_border\[\] = .*/$(sed -n 7p ~/.cache/wal/colors-wal-dwm.h)/" ~/Programs/dwm/config.def.h &&
 
 
-        ([ -f ~/Programs/dwm/config.h ] && rm -f ~/Programs/dwm/config.h  && echo 'Deleted old config.h, rebuilding dwm with new colorscheme' && cd ~/Programs/dwm/ && sudo make clean install) ||
+        ([ -f ~/Programs/dwm/config.h ] && rm -f ~/Programs/dwm/config.h  && echo 'Deleted old config.h, rebuilding dwm with new colorscheme' && cd ~/Programs/dwm/ && sudo -S make clean install) ||
 
-        ( echo 'Rebuilding dwm with new color scheme' && cd ~/Programs/dwm/ && sudo make clean install)
+        ( echo 'Rebuilding dwm with new color scheme' && cd ~/Programs/dwm/ && sudo -S make clean install)
 
 
 
@@ -62,6 +62,6 @@ command -v wal > /dev/null 2>&1 || { echo "Install pywal to use this command."; 
     sed -i "s/^.*\[SchemeNormHighlight\] =.*/        \[SchemeNormHighlight\] = \{ ${colorNewHighlight}, ${color3} \},/" ~/Programs/dmenu/config.def.h &&
 
 
-        ([ -f ~/Programs/dmenu/config.h ] && rm -f ~/Programs/dmenu/config.h  && echo 'Deleted old config.h, rebuilding dmenu with new colorscheme' && cd ~/Programs/dmenu/ && sudo make clean install) ||
+        ([ -f ~/Programs/dmenu/config.h ] && rm -f ~/Programs/dmenu/config.h  && echo 'Deleted old config.h, rebuilding dmenu with new colorscheme' && cd ~/Programs/dmenu/ && sudo -S make clean install) ||
 
-        ( echo 'Rebuilding dmenu with new color scheme' && cd ~/Programs/dmenu/ && sudo make clean install)
+        ( echo 'Rebuilding dmenu with new color scheme' && cd ~/Programs/dmenu/ && sudo -S make clean install)
