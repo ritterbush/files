@@ -1,20 +1,41 @@
 To install or reinstall, run 
 
-$make clean install 
+make clean install 
 
 This will create a config.h file as well. If changes are made to config.def.h, delete config.h so a new one will be created based on those changes.
 
 I put the patches I use in the PATCHES folder. Some patches don't have diff files and are just a matter of copying them to the main dwm folder and including them in the config.def.h file. The ones that are diff files need to be copied to the main dwm folder and then then run on with the patch cmd; e.g.
 
-$patch < dwm-fullgaps-6.2.diff
+patch < dwm-fullgaps-6.2.diff
 
 Patches will likely fail if the file to be patched has already been heavily modified or previously patched. In that case, look at the output after using patch, and look at the 
 
-$vim.config.def.h.rej
+vim.config.def.h.rej
 
 Just remove any lines from the file to be patched that have a '-' in front of them, and include any lines with a '+' in front of them.
 
 Note that patches are assumed to be running on unmodified dwm files. If a layout patch has already been run, then any additional ones will fail, just because additional layouts are added to the layouts array, and so the index given for that layout will collide with previously patched layouts. Make sure index called in Keys corresponds with correct layout in the Layouts array.
+
+New tip:
+Instead of using patch, use git apply, since it may be better at resolving conflicts. However, it will also compain about whitespacing issues. For example, git apply complained about this with the fibonacci patch, and when I used patch, these whitespace oddities (tabs on a blank line, and a space before a tab on inserted lines) were patched into the source file. They don't really matter, but be away git apply will catch these. May be best to use git apply and remove the whitespece oddities from the patch itself and use again. If git apply fails to apply, use patch to get a .rej file and manually patch in the differences.
+
+Start with longer patches you don't want to manually enter. This order worked with no issues:
+
+git apply dwm-statuscmd-nosignal-20210402-67d76bd.diff
+git apply dwm-alpha-20201019-61bb8b2.diff
+git apply dwm-vanitygaps-20200610-f09418b.diff
+git apply dwm-fibonacci-20200418-c82db69.diff (once whitespace issues were resolved)
+
+For more info:
+man dwm
+
+url to hacking dwm.
+url to patches.
+
+
+url to patches helper repo.
+
+
 
 My own changes are commented as 'Change' in config.def.h.
 These include changing the mod key to super, and changing the default terminal emulator.
@@ -25,7 +46,7 @@ Dmenu: For now I just use dmenu from the Arch repo, but I could build it myself 
 
 Wallpaper: 
 Set with 
-$xwallpaper --zoom /path/to/wallpaper
+xwallpaper --zoom /path/to/wallpaper
 Add that line to the startx configs used, with an '&' at the end.
 OR (startx configs will need to be updated accordingly): Install nitrogen (#pacman -S nitrogen)
 Run Nitrogen (e.g. with dmenu) and click preferences, add a folder with wallpapers, click OK, Select one and click Apply.
@@ -41,7 +62,7 @@ Without a desktop manager (not recommended if using NoMachine), you will use the
 Fonts:
 To use custom fonts, install them as normal (pacman or AUR) and then paste its name into config.def.h
 To get the name, use
-$fc-list | grep fontname
+fc-list | grep fontname
 The name to use will be on the right. 
 
 Keybindings:

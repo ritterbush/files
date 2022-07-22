@@ -19,27 +19,11 @@ static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
-/* py-wal colorscheme */
-static const char norm_fg[] = "bbbbbb";
-static const char norm_bg[] = "222222";
-static const char norm_border[] = "444444";
-static const char sel_fg[] = "#eeeeee";
-static const char sel_bg[] = "#005577";
-static const char sel_border[] = "#005577";
-static const char urg_fg[] = "#ff0000";
-static const char urg_bg[] = "#00ff00";
-static const char urg_border[] = "#0000ff";
 static const char *colors[][3]      = {
-    /*               fg       bg       border   */
-    [SchemeNorm] = { norm_fg, norm_bg, norm_border }, // unfocused wins
-    [SchemeSel]  = { sel_fg, sel_bg, sel_border },  // the focused win
-    /*[SchemeUrg] =  { urg_fg, urg_bg, urg_border },*/
-};
-/*static const char *colors[][3]      = {*/
 	/*               fg         bg         border   */
-	/*[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-};*/
+};
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
 	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
@@ -65,16 +49,11 @@ static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
-#include "fibonacci.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-	{ "[@]",      spiral },
-	{ "[\\]",      dwindle },
-	{ "|M|",      centeredmaster },
-	{ ">M>",      centeredfloatingmaster },
 };
 
 /* key definitions */
@@ -90,17 +69,12 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-/* dmenu uses pywal colors */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", sel_bg, "-sf", sel_fg, NULL };
-/*static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };*/
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *termcmd[]  = { "st", NULL };
 
 /* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
 static const StatusCmd statuscmds[] = {
-	/*{ "notify-send Mouse$BUTTON", 1 },*/
-    "~/.local/bin/dwm-scripts/cpu.sh",
-    "~/.local/bin/dwm-scripts/weather.sh",
-    "~/.local/bin/dwm-scripts/pacman-updates.sh",
+	{ "notify-send Mouse$BUTTON", 1 },
 };
 static const char *statuscmd[] = { "/bin/sh", "-c", NULL, NULL };
 
@@ -137,10 +111,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
-	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
-	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },
-	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
