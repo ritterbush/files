@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#Running a terminal command such as htop/nvim with a terminal (st, alacritty) does not, for whatever reason, source the rc file when using zsh, even though of course it does if you open up the terminal and then run the command as normal. Before underdtanding this was the issue, I entered the specifics of the rc file into the command (namely pywal), but now I just source the rc file and it's all good.Included below are further commands that work and didn't work, if I need to troubleshoot in the future.
+#Running a terminal command such as htop/nvim with a terminal (st, alacritty) does not, for whatever reason, source the rc file when using zsh, even though of course it does if you open up the terminal and then run the command as normal. Before understanding this was the issue, I entered the specifics of the rc file into the command (namely pywal), but now I just source the rc file and it's all good.Included below are further commands that work and didn't work, if I need to troubleshoot in the future.
 
 case $BUTTON in 
     1) alacritty -e zsh -c '(zsh & source ~/.zshrc) && curl wttr.in && zsh';;

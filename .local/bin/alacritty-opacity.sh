@@ -12,10 +12,10 @@ alacrittyrc_path=~/.config/alacritty/alacritty.yml
 
 
 #Check that argument is a number
-if     [ -z "${1##*[!0-9]*}" ]
-  then   
-	echo "Numbers 0-100 only."
-	exit 0
+if [ -z "${1##*[!0-9]*}" ] # Parameter expansion on $1, where '#' chops it up from matches that follow
+  then
+    echo "Numbers 0-100 only."
+    exit 0
 fi
 
 
