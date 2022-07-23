@@ -20,9 +20,9 @@ static const char col_cyan[]        = "#005577";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 /* py-wal colorscheme */
-static const char norm_fg[] = "bbbbbb";
-static const char norm_bg[] = "222222";
-static const char norm_border[] = "444444";
+static const char norm_fg[] = "#bbbbbb";
+static const char norm_bg[] = "#222222";
+static const char norm_border[] = "#444444";
 static const char sel_fg[] = "#eeeeee";
 static const char sel_bg[] = "#005577";
 static const char sel_border[] = "#005577";
