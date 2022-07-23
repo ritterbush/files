@@ -27,7 +27,7 @@ while true; do
         CPU=$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}')
         #WEATHER=$(curl wttr.in/Brisbane?format="%l:+%m+%p+%w+%t+%c+%C")
 
-        xsetroot -name "$(echo "\x02 $LOCALTIME   \x01  $HDD     $MEM     cpu: $CPU   \x03  $LINUX pkgs: $UPDATES ")"
+        xsetroot -name "$(printf "\x02 %s   \x01  %s     %s     cpu: %s   \x03  %s pkgs: %s " "$LOCALTIME" "$HDD" "$MEM" "$CPU" "$LINUX" "$UPDATES")"
 
         sleep 10s
 done &
