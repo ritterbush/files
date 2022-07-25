@@ -72,4 +72,5 @@ wal -R &
 # Run dwm status bar
 ~/.local/bin/dwm-scripts/update-setxroot.sh &
 
-sleep 1 && exec ~/.local/bin/dwm-scripts/start-dwm.sh
+#sleep 1 && exec ~/.local/bin/dwm-scripts/start-dwm.sh
+exec ~/.local/bin/dwm-scripts/start-dwm.sh
