@@ -20,8 +20,8 @@ on the right side. If there are spaces, encapsulate it in quotes.\n"
 exit
 }
 
-font="Linux Libertine:style=Bold Italic"
-size=":size=10"
+font="Linux Libertine:style=Bold Italic" # This default is assumed for --default below
+size=":size=10" # This default is assumed for --default below
 antialias=""
 autohint=""
 
@@ -55,6 +55,11 @@ while [ -n "$1" ]; do
             shift
             ;;
         -ah)
+            autohint=":autohint=true"
+            shift
+            ;;
+        --default)
+            antialias=":antialias=true"
             autohint=":autohint=true"
             shift
             ;;

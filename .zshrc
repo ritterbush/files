@@ -44,9 +44,12 @@ opacity() {
 
 #alias l='ls -A'
 #alias ll='ls -Al'
-alias vim="nvim"
+alias e="nvim"
 alias cdsh='cd ~/.local/bin'
+alias cdwm='cd ~/Programs/dwm'
+alias cddwm='cd ~/Programs/dwm'
 alias cdwmsh='cd ~/.local/bin/dwm-scripts'
+alias cddwmsh='cd ~/.local/bin/dwm-scripts'
 alias cdcon='cd ~/.config'
 alias cdal='cd ~/.config/alacritty'
 alias res='xrandr -s 1920x1080 -r 144.00'
@@ -64,6 +67,7 @@ alias screenshot='~/.local/bin/screenshot.sh'
 alias music='ncmpcpp'
 
 #ls replacements with exa
+alias l='exa -al --color=always --group-directories-first' # my preferred listing
 alias ls='exa -al --color=always --group-directories-first' # my preferred listing
 alias la='exa -a --color=always --group-directories-first'  # all files and dirs
 alias ll='exa -l --color=always --group-directories-first'  # long format
