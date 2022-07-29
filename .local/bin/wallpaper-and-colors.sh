@@ -29,20 +29,9 @@ command -v wal > /dev/null 2>&1 || { echo "Install pywal to use this command."; 
 
 #Rebuild dwm with new colorscheme
 [ -f ~/Programs/dwm/config.def.h ] &&
-    
-    sed -i "s/static const char norm_fg\[\] = .*/$(sed -n 1p ~/.cache/wal/colors-wal-dwm.h)/" ~/Programs/dwm/config.def.h &&
-    sed -i "s/static const char norm_bg\[\] = .*/$(sed -n 2p ~/.cache/wal/colors-wal-dwm.h)/" ~/Programs/dwm/config.def.h &&
-    sed -i "s/static const char norm_border\[\] = .*/$(sed -n 3p ~/.cache/wal/colors-wal-dwm.h)/" ~/Programs/dwm/config.def.h &&
-    sed -i "s/static const char sel_fg\[\] = .*/$(sed -n 5p ~/.cache/wal/colors-wal-dwm.h)/" ~/Programs/dwm/config.def.h &&
-    sed -i "s/static const char sel_bg\[\] = .*/$(sed -n 6p ~/.cache/wal/colors-wal-dwm.h)/" ~/Programs/dwm/config.def.h &&
-    sed -i "s/static const char sel_border\[\] = .*/$(sed -n 7p ~/.cache/wal/colors-wal-dwm.h)/" ~/Programs/dwm/config.def.h &&
-
-
         ([ -f ~/Programs/dwm/config.h ] && rm -f ~/Programs/dwm/config.h  && echo 'Deleted old config.h, rebuilding dwm with new colorscheme' && cd ~/Programs/dwm/ && sudo -S make clean install) ||
 
         ( echo 'Rebuilding dwm with new color scheme' && cd ~/Programs/dwm/ && sudo -S make clean install)
-
-
 
 #Rebuild dmenu with new colorscheme
 [ -f ~/Programs/dmenu/config.def.h ] &&
