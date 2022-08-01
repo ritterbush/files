@@ -54,10 +54,10 @@ fi
 #xterm -geometry 80x20+494-0 &
 #exec xterm -geometry 80x66+0+0 -name login
 
-#wallpaperFilepath=$(sed -n 5p ~/.local/bin/wallpaper-and-colors.sh | sed 's/filepath=//')
+#wallpaperFilepath=$(sed -n 5p $HOME/.local/bin/wallpaper-and-colors.sh | sed 's/filepath=//')
 
 # Start music client
-mpd ~/.config/mpd/mpd.config &
+mpd $HOME/.config/mpd/mpd.config &
 
 # Start compositor
 picom &
@@ -70,7 +70,7 @@ picom &
 wal -R &
 
 # Run dwm status bar
-~/.local/bin/dwm-scripts/update-setxroot.sh &
+$HOME/.local/bin/dwm-scripts/update-setxroot.sh &
 
-#sleep 1 && exec ~/.local/bin/dwm-scripts/start-dwm.sh
-exec ~/.local/bin/dwm-scripts/start-dwm.sh
+#sleep 1 && exec $HOME/.local/bin/dwm-scripts/start-dwm.sh
+exec $HOME/.local/bin/dwm-scripts/start-dwm.sh

@@ -86,8 +86,8 @@ static const char *termcmd[]  = { "alacritty", NULL };
 /* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
 static const StatusCmd statuscmds[] = {
 	/*{ "notify-send Mouse$BUTTON", 1 },*/
-    { "~/.local/bin/dwm-scripts/cpu.sh", 1 },
-    { "~/.local/bin/dwm-scripts/weather.sh", 2 },
+    { "~/.local/bin/dwm-scripts/weather.sh", 1 },
+    { "~/.local/bin/dwm-scripts/cpu.sh", 2 },
     { "~/.local/bin/dwm-scripts/pacman-updates.sh", 3 },
 };
 static const char *statuscmd[] = { "/bin/sh", "-c", NULL, NULL };
