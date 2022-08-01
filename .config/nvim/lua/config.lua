@@ -1,6 +1,63 @@
 local set = vim.opt
 
+-- Colorschemes: Select one --
 --vim.cmd [[colorscheme dracula]]
+--vim.cmd [[colorscheme lushwal]] -- in source code set ColorColumn fg to colors.background, and CursorLine fg to "None"; run :LushwalCompile
+--vim.cmd [[colorscheme lushwal | highlight ColorColumn ctermbg=grey guibg=grey]] -- helper to debug ColorColumn
+
+--[[
+Settings to let the terminal dictate transparency
+see :h hl-normal for options
+
+CursorLine: line of the cursor; Nr is line number of cursor
+EndOfBuffer: the bottom of short files
+FoldColumn: folds, I think; will add folds soon maybe
+LineNR: line numbers
+Normal: background
+Pmenu: popup windows (TODO:diagnostic msg is still opaque)
+SignColumn: column left of numbers
+StatusLines: the bottom bar; NC affects the top bar of open splits
+TabLines: the top bar
+WinSeparator: vsplit bar is just a borderline
+WhiteSpace: leading whitespace, any tabs, etc.
+--]]
+
+function Colorscheme_transparency()
+vim.cmd [[
+highlight CursorLine ctermbg=NONE guibg=NONE
+highlight CursorLineNr ctermbg=NONE guibg=NONE
+highlight EndOfBuffer ctermbg=NONE guibg=NONE
+highlight FoldColumn ctermbg=NONE guibg=NONE
+highlight LineNr ctermbg=NONE guibg=NONE
+highlight Normal ctermbg=NONE guibg=NONE
+highlight Pmenu ctermbg=NONE guibg=NONE
+highlight SignColumn ctermbg=NONE guibg=NONE
+highlight StatusLine ctermbg=NONE guibg=NONE
+highlight StatusLineNC ctermbg=NONE guibg=NONE
+highlight TabLine ctermbg=NONE guibg=NONE
+highlight TabLineSel ctermbg=NONE guibg=NONE
+highlight WinSeparator ctermbg=NONE guibg=NONE
+highlight WhiteSpace ctermbg=NONE guibg=NONE
+]]
+end
+function Colorscheme_transparency_tlf()
+vim.cmd [[
+highlight TabLineFill ctermbg=NONE guibg=NONE
+]]
+end
+
+if vim.g.colors_name == "lushwal" then
+Colorscheme_transparency()
+Colorscheme_transparency_tlf()
+print("Using LushWal")
+end
+
+if vim.g.colors_name == "dracula" then
+Colorscheme_transparency()
+print("Using Dracula")
+end
+
+set.title = true -- shows file and dir instead of terminal name
 
 -- Default mapleader key is '\'
 vim.g.mapleader = ','

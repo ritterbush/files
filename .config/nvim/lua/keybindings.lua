@@ -10,6 +10,17 @@ keymap("i","kj","<esc>")
 -- Turn off highlighted chars after a search
 keymap("n","<leader><space>",":nohlsearch<CR>")
 
+-- Turn off and on transparency according to colorscheme
+if vim.g.colors_name == "lushwal" then
+keymap("n","<leader>s",[[:colorscheme lushwal<enter> | :lua print("LushWal colorscheme")<enter>]])
+keymap("n","<leader>t",[[:lua Colorscheme_transparency()<enter> | :lua Colorscheme_transparency_tlf()<enter> | :lua print("LushWal colorscheme with transparency")<enter>]])
+end
+
+if vim.g.colors_name == "dracula" then
+keymap("n","<leader>s",[[:colorscheme dracula<enter> | :lua print("Dracula colorscheme")<enter>]])
+keymap("n","<leader>t",[[:lua Colorscheme_transparency()<enter> | :lua print("Dracula colorscheme with transparency")<enter>]])
+end
+
 -- Toggle colorcolumn
 vim.cmd([[nnoremap <leader>c :execute "set colorcolumn=" . (&colorcolumn == "" ? "80" : "")<CR>]])
 -- Neither of these work (single quotes nor escaped double quotes):

@@ -61,15 +61,20 @@ return require('packer').startup(function(use)
   use 'dracula/vim'
 
   use {
+    "oncomouse/lushwal",
+    requires = { { "rktjmp/lush.nvim", opt = true }, { "rktjmp/shipwright.nvim", opt = true } },
+    }
+
+  use {
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate'
-   }
+    }
 
   -- lsp
   use {
     'williamboman/nvim-lsp-installer',
     'neovim/nvim-lspconfig',
-  }
+    }
 
 
 --[[ -- The below is another default lsp-installer (with lspconfig) config possibility, but lspconfig is already setup in lsp.lua
@@ -103,10 +108,10 @@ return require('packer').startup(function(use)
     use 'hrsh7th/vim-vsnip'
 
     -- telescope
-   
+
     -- telescope sorter
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-    
+
     -- telescope
     use {
       'nvim-telescope/telescope.nvim',
@@ -203,4 +208,3 @@ end)
 --    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
 --  augroup end
 --]])
-
