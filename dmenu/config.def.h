@@ -9,17 +9,18 @@ static const char *fonts[] = {
 	"monospace:size=10"
 };
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
-static const char *colors[SchemeLast][2] = {
+#include "../../.cache/wal/colors-wal-dmenu.h"
+/*static const char *colors[SchemeLast][2] = {*/
 	/*     fg         bg       */
-	[SchemeNorm] = { "#dcd8cf", "#150f0c" },
-	[SchemeSel] = { "#dcd8cf", "#99562F" },
-        [SchemeSelHighlight] = { "#A4A19F", "#99562F" },
-        [SchemeNormHighlight] = { "#A4A19F", "#150f0c" },
-	[SchemeOut] = { "#dcd8cf", "#A4A19F" },
-};
+/*	[SchemeNorm] = { "#bbbbbb", "#222222" },*/
+/*	[SchemeSel] = { "#eeeeee", "#005577" },*/
+/*	[SchemeOut] = { "#000000", "#00ffff" },*/
+/*};*/
 /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
 static unsigned int lines      = 0;
-static unsigned int lineheight = 0;         /* -h option; minimum height of a menu line     */
+/* -h option; minimum height of a menu line */
+static unsigned int lineheight = 0;
+static unsigned int min_lineheight = 8;
 
 /*
  * Characters not considered part of a word while deleting words

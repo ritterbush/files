@@ -22,21 +22,26 @@ command -v wal > /dev/null 2>&1 || { echo "Install pywal to use this command."; 
         { echo 'Rebuilding dwm with new color scheme' && cd $HOME/Programs/dwm/ && sudo make clean install ;}
 
 # Rebuild dmenu with new colorscheme
+# Unfortunately, a highlight patch means we have to manually edit dmenu's wal cache file
+sed -i '4 a\
+	[SchemeSelHighlight] = { leftHlColor, color1 },' \
+$HOME/.cache/wal/colors-wal-dmenu.h
+sed -i '5 a\
+	[SchemeNormHighlight] = { leftHlColor, color2 },' \
+$HOME/.cache/wal/colors-wal-dmenu.h
+sed -i '7 a\
+	[SchemeNormHighlight] = { leftHlColor, color3 },' \
+$HOME/.cache/wal/colors-wal-dmenu.h
+leftHlColor=\"$(sed -n 7p $HOME/.cache/wal/colors)\"
+color1=\"$(sed -n 10p $HOME/.cache/wal/colors)\"
+color2=\"$(sed -n 1p $HOME/.cache/wal/colors)\"
+color3=\"$(sed -n 3p $HOME/.cache/wal/colors)\"
+sed -i "s/leftHlColor/$leftHlColor/g" $HOME/.cache/wal/colors-wal-dmenu.h
+sed -i "s/color1/$color1/" $HOME/.cache/wal/colors-wal-dmenu.h
+sed -i "s/color2/$color2/" $HOME/.cache/wal/colors-wal-dmenu.h
+sed -i "s/color3/$color3/" $HOME/.cache/wal/colors-wal-dmenu.h
+
 [ -f $HOME/Programs/dmenu/config.def.h ] &&
-    sed -i "s/^.*\[SchemeNorm\].*/$(sed -n 3p $HOME/.cache/wal/colors-wal-dmenu.h)/" $HOME/Programs/dmenu/config.def.h &&
-    sed -i "s/^.*\[SchemeSel\].*/$(sed -n 4p $HOME/.cache/wal/colors-wal-dmenu.h)/" $HOME/Programs/dmenu/config.def.h &&
-    sed -i "s/^.*\[SchemeOut\].*/$(sed -n 5p $HOME/.cache/wal/colors-wal-dmenu.h)/" $HOME/Programs/dmenu/config.def.h &&
-    colorNewHighlight=$(sed -n 7p $HOME/.cache/wal/colors) &&
-    colorNewHighlight=$(echo "$colorNewHighlight" | sed "s/^/\"/") &&
-    colorNewHighlight=$(echo "$colorNewHighlight" | sed "s/$/\"/") &&
-    color2=$(grep "\[SchemeSel\] =" $HOME/Programs/dmenu/config.def.h) &&
-    color2=$(echo "$color2" | sed "s/^.*, //") &&
-    color2=${color2% \},} &&
-    color3=$(grep "\[SchemeNorm\] =" $HOME/Programs/dmenu/config.def.h) &&
-    color3=$(echo "$color3" | sed "s/^.*, //") &&
-    color3=${color3% \},} &&
-    sed -i "s/^.*\[SchemeSelHighlight\] =.*/        \[SchemeSelHighlight\] = \{ ${colorNewHighlight}, ${color2} \},/" $HOME/Programs/dmenu/config.def.h &&
-    sed -i "s/^.*\[SchemeNormHighlight\] =.*/        \[SchemeNormHighlight\] = \{ ${colorNewHighlight}, ${color3} \},/" $HOME/Programs/dmenu/config.def.h &&
 
     { [ -f $HOME/Programs/dmenu/config.h ] && rm -f $HOME/Programs/dmenu/config.h  && echo 'Deleted old config.h, rebuilding dmenu with new colorscheme' && cd $HOME/Programs/dmenu/ && sudo make clean install ;} ||
 
