@@ -2,8 +2,9 @@
 
 #Running a terminal command such as htop/nvim with a terminal (st, alacritty) does not, for whatever reason, source the rc file when using zsh, even though of course it does if you open up the terminal and then run the command as normal. Before understanding this was the issue, I entered the specifics of the rc file into the command (namely pywal), but now I just source the rc file and it's all good.Included below are further commands that work and didn't work, if I need to troubleshoot in the future.
 
-case $BUTTON in 
-    1) alacritty -e sh -c "curl wttr.in ; $SHELL";;
+#1) alacritty -e sh -c "curl wttr.in ; $SHELL";; # Works by keeping output in shell to view
+case $BUTTON in
+    1) alacritty -e sh -c "curl wttr.in | less -R";;
     2) alacritty -e nvim $HOME/Programs/dwm/config.def.h;;
     3) alacritty -e nvim $HOME/.local/bin/dwm-scripts/weather.sh;;
 esac
