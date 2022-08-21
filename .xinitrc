@@ -54,6 +54,9 @@ fi
 #xterm -geometry 80x20+494-0 &
 #exec xterm -geometry 80x66+0+0 -name login
 
+# Set monitor resolution and hz
+xrandr -s 1920x1080 -r 144.00
+
 # Start music client
 mpd $HOME/.config/mpd/mpd.config &
 
