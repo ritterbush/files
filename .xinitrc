@@ -54,23 +54,17 @@ fi
 #xterm -geometry 80x20+494-0 &
 #exec xterm -geometry 80x66+0+0 -name login
 
-#wallpaperFilepath=$(sed -n 5p $HOME/.local/bin/wallpaper-and-colors.sh | sed 's/filepath=//')
-
 # Start music client
 mpd $HOME/.config/mpd/mpd.config &
 
 # Start compositor
 picom &
 
-# Restore wallpaper: uncomment whichever pkg used
-#nitrogen --restore &
-#xwallpaper --zoom "$wallpaperFilepath" &
-
-# Restore colorscheme
+# Restore wallpaper and colorscheme
 wal -R &
 
 # Run dwm status bar
 $HOME/.local/bin/dwm-scripts/update-setxroot.sh &
 
-#sleep 1 && exec $HOME/.local/bin/dwm-scripts/start-dwm.sh
+# Start dwm with Shift+Alt+Q restart option
 exec $HOME/.local/bin/dwm-scripts/start-dwm.sh
