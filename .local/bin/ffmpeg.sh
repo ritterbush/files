@@ -61,7 +61,7 @@ cut_video_from_file() {
         start=$(awk -v line="$i" 'FNR == line {print $1}' < clips.info)
         end=$(awk -v line="$i" 'FNR == line {print $2}' < clips.info)
         echo "$start to $end"
-        ffmpeg_cut_audio "$start" "$end" "$1" "${i}.$ext"
+        cut_video "$start" "$end" "$1" "${i}.$ext"
     done
 }
 
@@ -80,9 +80,9 @@ concat_all_in_txt_file() {
 
 # Optional param: output name
 concat_all_in_dir() {
-    ffmpeg_all_in_dir_to_txt_file
-    [ -z "$1" ] && ffmpeg_concat_all_in_txt_file
-    [ -n "$1" ] && ffmpeg_concat_all_in_txt_file "$1"
+    all_in_dir_to_concat_txt_file
+    [ -z "$1" ] && concat_all_in_txt_file
+    [ -n "$1" ] && concat_all_in_txt_file "$1"
 }
 
 # Cut audio without re-encoding
@@ -105,7 +105,7 @@ cut_audio_from_file() {
         start=$(awk -v line="$i" 'FNR == line {print $1}' < tracks.info)
         end=$(awk -v line="$i" 'FNR == line {print $2}' < tracks.info)
         echo "$start to $end"
-        ffmpeg_cut_audio "$start" "$end" "$1" "${i}.$ext"
+        cut_audio "$start" "$end" "$1" "${i}.$ext"
     done
 }
 
@@ -134,14 +134,14 @@ format_cut_file() {
     start="00:00:00"
     end=$(awk 'FNR == 1 {print $1}' < stoptimes.txt)
 
-    echo "$start $end" >> cuts.info
+    echo "$start $end" > cuts.info
 
     for i in $(seq 2 "$tracks_amt")
     do
         start="$end"
-        end=$(awk -v line="$i" 'FNR == line {print $2}' < stoptimes.info)
+        end=$(awk -v line="$i" 'FNR == line {print $1}' < stoptimes.txt)
         echo "$start to $end"
-        echo "$start $end" > cuts.info
+        echo "$start $end" >> cuts.info
     done
 }
 
