@@ -59,7 +59,7 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   use 'dracula/vim'
-
+  use { 'AlphaTechnolog/pywal.nvim', as = 'pywal' }
   use {
     "oncomouse/lushwal",
     requires = { { "rktjmp/lush.nvim", opt = true }, { "rktjmp/shipwright.nvim", opt = true } },

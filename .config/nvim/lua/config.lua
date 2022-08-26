@@ -2,6 +2,7 @@ local set = vim.opt
 
 -- Colorschemes: Select one --
 --vim.cmd [[colorscheme dracula]]
+--vim.cmd [[colorscheme pywal]] -- Statusline at bottom missing? And vim.g.colors_name (colorscheme name) is nil.
 --vim.cmd [[colorscheme lushwal]] -- in source code set ColorColumn fg to colors.background, and CursorLine fg to "None"; run :LushwalCompile
 --vim.cmd [[colorscheme lushwal | highlight ColorColumn ctermbg=grey guibg=grey]] -- helper to debug ColorColumn
 
