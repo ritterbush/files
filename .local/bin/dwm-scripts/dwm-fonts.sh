@@ -42,7 +42,7 @@ while [ -n "$1" ]; do
         -s)
             if [ -n "$2" ]
             then
-                [ -z "${2##*[!0-9]*}" ] && { echo "Size requires a number."; exit; } # Check $2 is a number
+                { case $2 in *[!0-9]*) { echo "Size requires a number." ; exit 1; } ;; esac; } # Check $2 is a number
                 size=":size=$2"
                 shift 2
             else
@@ -76,10 +76,10 @@ done
 font="${font}${size}${antialias}${autohint}"
 
 # Put new font values into dwm (applies to dmenu too)
-sed -i "s/^static const char \*fonts\[\]          = { \".*/static const char *fonts[]          = { \"$font\" };/" $HOME/Programs/dwm/config.def.h
-sed -i "s/^static const char dmenufont\[\]       = \".*/static const char dmenufont[]       = \"$font\";/" $HOME/Programs/dwm/config.def.h
+sed -i "s/^static const char \*fonts\[\]          = { \".*/static const char *fonts[]          = { \"$font\" };/" "$HOME"/Programs/dwm/config.def.h
+sed -i "s/^static const char dmenufont\[\]       = \".*/static const char dmenufont[]       = \"$font\";/" "$HOME"/Programs/dwm/config.def.h
 
 # Rebuild dwm with font changes (applies to dmenu too)
-{ [ -f $HOME/Programs/dwm/config.h ] && rm -f $HOME/Programs/dwm/config.h  && echo "Deleted old config.h, rebuilding dwm with font value: $font" && cd $HOME/Programs/dwm/ && sudo make clean install ; } ||
+{ [ -f "$HOME"/Programs/dwm/config.h ] && rm -f "$HOME"/Programs/dwm/config.h  && echo "Deleted old config.h, rebuilding dwm with font value: $font" && cd "$HOME"/Programs/dwm/ && sudo make clean install; } ||
 
-    { echo "Rebuilding dwm with font value: $font" && cd $HOME/Programs/dwm/ && sudo make clean install ; }
+    { echo "Rebuilding dwm with font value: $font" && cd "$HOME"/Programs/dwm/ && sudo make clean install; }

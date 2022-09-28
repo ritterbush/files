@@ -4,17 +4,17 @@
 
 #1) alacritty -e sh -c "curl wttr.in ; $SHELL";; # Works by keeping output in shell to view
 case $BUTTON in
-    1) alacritty -e sh -c "curl wttr.in | less -R";;
-    2) alacritty -e nvim $HOME/Programs/dwm/config.def.h;;
-    3) alacritty -e nvim $HOME/.local/bin/dwm-scripts/weather.sh;;
+    1) alacritty -e sh -c "curl wttr.in | less -R" ;;
+    2) alacritty -e nvim "$HOME"/Programs/dwm/config.def.h ;;
+    3) alacritty -e nvim "$HOME"/.local/bin/dwm-scripts/weather.sh ;;
 esac
 
-#3) alacritty -e zsh -c 'nvim $HOME/.local/bin/dwm-scripts/cpu.sh && zsh';;
-#3) alacritty -e zsh -c '(zsh & exit) && sleep 3 && nvim $HOME/.local/bin/dwm-scripts/cpu.sh';;
-#3) alacritty -e zsh -c '(zsh & wal -R & sleep 3) && (exit & zsh) && nvim $HOME/.local/bin/dwm-scripts/cpu.sh';;
-#3) alacritty -e zsh -c '(zsh & wal -R & sleep 3) & nvim $HOME/.local/bin/dwm-scripts/cpu.sh';;
-#3) alacritty -e zsh -c '(zsh & wal -R & sleep 3) && nvim $HOME/.local/bin/dwm-scripts/cpu.sh';;
-#3) alacritty -e zsh -c '(zsh & wal -R) && nvim $HOME/.local/bin/dwm-scripts/cpu.sh';;
-#3) alacritty -e $SHELL -c '($SHELL & (cat $HOME/.cache/wal/sequences &) 2>/dev/null) && nvim $HOME/.local/bin/dwm-scripts/cpu.sh';;
-#2) alacritty $($HOME/.local/bin/alacritty-opacity.sh 90);;
-#1) alacritty -e $SHELL -c 'cd $HOME/.local/bin && $SHELL';;
+#3) alacritty -e zsh -c 'nvim "$HOME"/.local/bin/dwm-scripts/cpu.sh && zsh';;
+#3) alacritty -e zsh -c '(zsh & exit) && sleep 3 && nvim "$HOME"/.local/bin/dwm-scripts/cpu.sh';;
+#3) alacritty -e zsh -c '(zsh & wal -R & sleep 3) && (exit & zsh) && nvim "$HOME"/.local/bin/dwm-scripts/cpu.sh';;
+#3) alacritty -e zsh -c '(zsh & wal -R & sleep 3) & nvim "$HOME"/.local/bin/dwm-scripts/cpu.sh';;
+#3) alacritty -e zsh -c '(zsh & wal -R & sleep 3) && nvim "$HOME"/.local/bin/dwm-scripts/cpu.sh';;
+#3) alacritty -e zsh -c '(zsh & wal -R) && nvim "$HOME"/.local/bin/dwm-scripts/cpu.sh';;
+#3) alacritty -e $SHELL -c '($SHELL & (cat "$HOME"/.cache/wal/sequences &) 2>/dev/null) && nvim "$HOME"/.local/bin/dwm-scripts/cpu.sh';;
+#2) alacritty $("$HOME"/.local/bin/alacritty-opacity.sh 90);;
+#1) alacritty -e $SHELL -c 'cd "$HOME"/.local/bin && $SHELL';;
