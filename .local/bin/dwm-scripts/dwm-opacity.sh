@@ -19,7 +19,7 @@ percent_of_255_hex=$(printf "%x\n" "$percent_of_255")
 [ ${#percent_of_255_hex} -eq 2 ] &&
     sed -i "s/static const unsigned int baralpha = .*/static const unsigned int baralpha = 0x${percent_of_255_hex};/" "$HOME"/Programs/dwm/config.def.h
 
-[ ${#percent_of_255_hex} -gt 2 ] && { echo "Numbers 0-100 only."; exit 1; } # If $1 > 100, hex will have more than 2 digits
+[ ${#percent_of_255_hex} -gt 2 ] && { echo "$0 accepts numbers 0-100 only."; exit 1; } # If $1 > 100, hex will have more than 2 digits
 
 #Rebuild dwm with opacity changes
 { [ -f "$HOME"/Programs/dwm/config.h ] && rm -f "$HOME"/Programs/dwm/config.h  && echo "Deleted old config.h, rebuilding dwm with new opacity" && cd "$HOME"/Programs/dwm/ && sudo make clean install; } ||

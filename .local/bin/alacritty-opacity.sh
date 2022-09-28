@@ -23,5 +23,5 @@ then
     exit
 fi
 
-echo "Numbers 0-100 only."
+echo "$0 accepts numbers 0-100 only."
 exit 1
