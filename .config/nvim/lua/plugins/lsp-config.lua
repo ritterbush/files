@@ -9,7 +9,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "tsserver" } -- Add any here to the servers table below to use
+                ensure_installed = { "lua_ls", "tsserver", "clangd", "rust_analyzer" } -- Add any here to the servers table below to use
             })
         end
     },
@@ -22,7 +22,7 @@ return {
             -- Don't add any servers that are manually setup (e.g. if different settings are desired) or it will get overwritten and setup again.
             -- This uses a loop to call 'setup' on every item in servers.
             -- Lua note: we might think to use the dot operator style of `lspconfig.lsp.setup({}), but this is pretty much impossible. To do this we'd make the command into a string and then use `loadstring(string)()`, which is a deprecated function. Best to use the strings as index.as below.
-            local servers = { "lua_ls", "tsserver", "clangd" }
+            local servers = { "lua_ls", "tsserver", "clangd", "rust_analyzer" }
 
             -- This capabilities variable is from hrsh7th/cmp-nvim-lsp for completions from lsp's (see nvim-cmp.lua).
             -- It gets assigned in the setup function below. The next comment is from hrsh7th/cmp-nvim-lsp.
@@ -30,8 +30,8 @@ return {
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 
-            -- LATER!
-            -- map buffer local keybindings when the language server attaches
+            -- Most of the keybindings here and this on_attach function comes from the minimal config
+            -- It is linked from the main README.md and is here: https://github.com/neovim/nvim-lspconfig/blob/master/test/minimal_init.lua
             local on_attach = function(_, bufnr)
                 local function buf_set_option(...)
                   vim.api.nvim_buf_set_option(bufnr, ...)
@@ -60,6 +60,24 @@ return {
                 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
                 vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+
+                -- Show line diagnostics automatically in hover window
+                -- from https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
+                vim.api.nvim_create_autocmd("CursorHold", {
+                    buffer = bufnr,
+                    callback = function()
+                        local opts = {
+                            focusable = false,
+                            close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+                            border = 'rounded',
+                            source = 'always',
+                            prefix = ' ',
+                            scope = 'cursor',
+                        }
+                        vim.diagnostic.open_float(nil, opts)
+                    end
+            })
+
             end
 
             for _, lsp in pairs(servers) do
