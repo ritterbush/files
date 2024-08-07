@@ -76,7 +76,7 @@ return {
                         }
                         vim.diagnostic.open_float(nil, opts)
                     end
-            })
+                })
 
             end
 
@@ -85,6 +85,7 @@ return {
                     capabilities = capabilities,
                     on_attach = on_attach,
                 })
+                vim.lsp.inlay_hint.enable()
             end
         end
     }
